@@ -3,18 +3,19 @@
 <head>
     <meta charset="utf-8">
     <title>Add User</title>
+    <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
     <header>
         <nav>
             <ul>
                 <li><a href="/">User</a></li>
-                <li><a href="/add-user">Add User</a></li>
+                <li><a href="/admin/add-user">Add User</a></li>
             </ul>
         </nav>
     </header>
     <main>
-        <form action="/add-user" method="POST">
+        <form action="/admin/add-user" method="POST">
             <input type="text" name="title" placeholder="User name">
             <button type="submit">Add User</button>
         </form>
