@@ -13,6 +13,9 @@ const userRoutes = require('./routes/users');
 app.use('/admin', adminData.routes);
 app.use(userRoutes);
 
+app.set('view engine', 'pug');
+app.set('views', 'views');
+
 app.use((req, res, next) => {
     res.status(404).sendFile(path.join(rootDir, 'views', '404.html'));
 });
