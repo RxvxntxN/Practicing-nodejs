@@ -1,28 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const path = require('path');
-const rootDir = require('../util/path');
 
+const userController = require('../controllers/users');
 
-const users = [];
+router.get('/add-user', userController.getAddUser);
 
-// /admin/add-user => GET
+router.post('/add-user', userController.postAddUser);
 
-router.get('/add-user',(req, res, next) => {
-    res.sendFile(path.join(rootDir, 'views', 'add-user.html'));
-});
-
-// /admin/add-user => POST
-
-router.post('/add-user',(req, res, next) => {
-    //console.log(req.body);
-    users.push({name: req.body.name});
-    res.redirect('/');
-});
-
-//module.exports = router;
-
-module.exports = {
-    routes: router,
-    users: users
-};
+module.exports = router;

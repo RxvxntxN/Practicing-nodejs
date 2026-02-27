@@ -5,13 +5,12 @@ const path = require('path');
 const rootDir = require('./util/path');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(rootDir, 'public')));
-//const adminRoutes = require('./routes/admin');
 
-const adminRoutes = require('./routes/admin');  
+//const adminRoutes = require('./routes/admin');
+const adminData = require('./routes/admin');
 const userRoutes = require('./routes/users');
 
-//Use directly without .routes
-app.use('/admin', adminRoutes);
+app.use('/admin', adminData.routes);
 app.use(userRoutes);
 
 app.set('view engine', 'pug');
