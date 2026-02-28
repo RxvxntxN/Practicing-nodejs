@@ -1,6 +1,6 @@
-const User = require('../models/user');
+const User = require('../models/user-working');
 
-const users = [];
+//const users = [];
 
 exports.getAddUser = (req, res) => {
     res.render('add-user', {
@@ -8,29 +8,66 @@ exports.getAddUser = (req, res) => {
     })};
 
 exports.postAddUser = (req, res) => {
-    //users.push({ name: req.body.title });
-    User.fetchAll((users) => {
-        const user = new User(req.body.title);
-        user.save();
-       
-    });
-     res.redirect('/');
-    // const user = new User(req.body.title);
-    // user.save();
-    // res.redirect('/');
+    const user = new User(req.body.title);
+    user.save();
+    res.redirect('/');
 };
 
-
 exports.getUsers = (req, res) => {
+    console.log('🚀 getUsers called');
+    
+    User.fetchAll((users) => {
+        console.log('📦 fetchAll callback received:', users);
+        console.log('📦 users length:', users.length);
+        
+        res.render('user', {
+            pageTitle: 'Users',
+            users: users
+        });
+        console.log('✅ Response rendered');
+    });
+    
+    console.log('⏳ Waiting for fetchAll callback...');
+};
+// exports.getUsers = (req, res) => {
+//     console.log('getUsers controller called!');  // ← Add this
+    
+//     User.fetchAll((users) => {
+//         console.log('Users from fetchAll:', users);  // ← You already have this
+//         console.log('Users length:', users.length);  // ← Add this
+        
+//         res.render('users', {
+//             pageTitle: 'Users',
+//             users: users
+//         });
+//     });
+// };
+
+
+//exports.getUsers = (req, res) => {
     // res.render('users', {
     //     pageTitle: 'Users',
     //     users: users
     // });
-    const user = User.fetchAll();
-    res.render('users', {
-        pageTitle: 'Users',
-        users: user
-    });
-}
+    // const user = User.fetchAll();
+    // res.render('users', {
+    //     pageTitle: 'Users',
+    //     users: user
+    // });
 
-exports.users = users;
+    // User.fetchAll((users) => {
+    //     res.render('users', {
+    //         pageTitle: 'Users',
+    //         users: users
+    //     });
+    // });
+
+    // User.fetchAll((users) => {
+    //     res.render('users', {
+    //         pageTitle: 'Users',
+    //         users: users
+    //     });
+    // });
+//}
+
+//exports.users = users;

@@ -2,7 +2,7 @@ doctype html
 html
     head
         meta(charset="utf-8")
-        title #{userTitle}
+        title #{pageTitle}
         link(rel="stylesheet", href="/css/main.css")
     body
         header.main-header
@@ -19,7 +19,7 @@ html
                     each user in users
                         article.card.product-item
                             header.card_header
-                                h1.product_title #{user.name}
+                                h1.product_title #{user.title}
                             div.card_image
                                 img(src="https://cdn-icons-png.flaticon.com/512/9131/9131531.png", alt="user image")
                             div.card_content
